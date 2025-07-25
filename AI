@@ -1,0 +1,23 @@
+const myHeaders = new Headers();
+myHeaders.append("x-apihub-key", "");
+myHeaders.append("x-apihub-host", "AI-Translate.allthingsdev.co");
+myHeaders.append("x-apihub-endpoint", "720ba733-ca3d-4e45-b1f8-67c18cbd5101");
+myHeaders.append("Content-Type", "application/json");
+
+const raw = JSON.stringify({
+   "from": "en",
+   "to": "es",
+   "text": "The dazzling harvest needed to be gathered in a couple of days; otherwise we risked to lose the most of it."
+});
+
+const requestOptions = {
+   method: "POST",
+   headers: myHeaders,
+   body: raw,
+   redirect: "follow"
+};
+
+fetch("https://AI-Translate.proxy-production.allthingsdev.co/api/translate", requestOptions)
+   .then((response) => response.text())
+   .then((result) => console.log(result))
+   .catch((error) => console.error(error));
